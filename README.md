@@ -1,24 +1,30 @@
-# README
+# <ここにアプリ名を入力>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+カフェ×レビュー
 
-Things you may want to cover:
+### テーマを選んだ理由
+私はカフェ巡りが趣味なのですが、最近の流行っているカフェはinstagram以外で見つけるのが難しく、
+instagramでも関係ない位置情報のタグがたくさんついていてわかりにくいと思ったから。
+また、価格帯やおすすめメニューも行った人のレビューを見られたらいいなと思ったから。
 
-* Ruby version
+### ターゲットユーザ
+10~20代の女性
 
-* System dependencies
+### 主な利用シーン
+カフェを探す時
 
-* Configuration
+## 設計書
 
-* Database creation
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
