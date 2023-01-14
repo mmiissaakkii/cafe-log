@@ -11,7 +11,7 @@ class Public::ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     if @review.customer != current_customer
-      redirect_to :show
+      redirect_to :review_path
     end
   end
 
@@ -33,8 +33,8 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
-    if @review.save
-      redirect_to public_review_path(@review), notice: "レビューを作成しました！"
+    if @review.save!
+      redirect_to review_path(@review), notice: "レビューを作成しました！"
     else
       render :new
     end
@@ -43,14 +43,14 @@ class Public::ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to root_path, notice: "レビューを削除しました"
+    redirect_to reviews_path, notice: "レビューを削除しました"
   end
 
 #レビューのストロングパラメータ
   private
 
   def review_params
-    params.require(:review).permit(:body, :store_name, :image, :proce, :address)
+    params.require(:review).permit(:body, :store_name, :image, :price, :address, tag_ids: [])
   end
 
 end

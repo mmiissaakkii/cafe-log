@@ -1,13 +1,26 @@
 <div class="container">
   <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="bg-light">New Review</h5>
+    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="bg-light">
+        <h5 class="p-4 mb-0 ml-5 font-weight-bold">New Review</h5>
+      </div>
+      <div class="form-body p-4 col-8 mx-auto">
       <%=form_with model: @review, url: reviews_path, method: :post do |f| %>
         <div class="input-group mb-3 mt-4">
           <%= f.file_field :image, accept: "image/*" %>
         </div>
         <div class="input-group mb-3 mt-4">
-          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"コメントここに" %>
+          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"本文" %>
+        </div>
+        <div class="input-group mb-3 mt-4">
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+          <div class='form-check'>
+            <%= tag.label class: 'form-check-label' do %>
+              <%= tag.check_box class: 'form-check-input' %>
+              <%= tag.text %>
+            <% end %>
+          </div>
+        <% end %>
         </div>
         <div class="input-group mb-3 mt-4">
           <%= f.text_field :store_name, class:"form-control", placeholder:"ショップ名" %>
@@ -23,6 +36,7 @@
         <%= f.submit '投稿', class:"btn btn-info mt-4" %>
         </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

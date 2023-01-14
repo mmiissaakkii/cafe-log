@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2023_01_09_052101) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "custmer_id"
+    t.integer "customer_id"
     t.integer "review_id"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2023_01_09_052101) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "custmer_id"
+    t.integer "customer_id"
     t.integer "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2023_01_09_052101) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "custmer_id"
+    t.integer "customer_id"
     t.integer "price"
     t.string "store_name"
     t.string "address"

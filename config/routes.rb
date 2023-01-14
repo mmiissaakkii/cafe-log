@@ -24,8 +24,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
     resources :reviews do
       resources :favorites, only: [:create, :destroy]
+      get "search" => "searches#search"
     end
     resources :customers, only:[:index, :show, :edit, :update, :new]
+    resources :tags, only:[:show, :new, :create]
 
   end
 

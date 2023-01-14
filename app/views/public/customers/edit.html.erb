@@ -1,13 +1,21 @@
 <div class="container">
   <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
-      <h5 class="bg-light">Profile Editing</h5>
+    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <div class="bg-light">
+        <h5 class="p-4 mb-0 ml-5 font-weight-bold">Profile Editing</h5>
+      </div>
+      <div class="form-body p-4 col-8 mx-auto">
       <%= form_with model: @customer, url: customer_path, method: :patch do |f| %>
       <div class="input-group mb-3 mt-4">
         <%= f.text_field :name, class:"form-control" %>
       </div>
       <div class="input-group mb-3 mt-4">
-        <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
+      <div class="input-group mb-3 mt-4">
+        <%= f.submit '編集', class: 'btn btn-secondary' %>
+      </div>
+      <% end %>
       </div>
     </div>
   </div>
