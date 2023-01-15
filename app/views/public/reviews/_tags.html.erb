@@ -1,0 +1,4 @@
+<% tags.each do |tag| %>
+  <%= link_to tag.name,review_search_tag_path(tag.id)%>
+  <%="(#{tag.review.count})" %>
+<% end %>

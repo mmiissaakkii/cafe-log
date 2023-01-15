@@ -5,25 +5,7 @@
         <h5 class="p-4 mb-0 ml-5 font-weight-bold">Review Editing</h5>
       </div>
       <div class="form-body p-4 col-8 mx-auto">
-      <%=form_with model: @review, url: review_path, method: :patch do |f| %>
-        <div class="input-group mb-3 mt-4">
-          <%= f.file_field :image, accept: "image/*" %>
-        </div>
-        <div class="input-group mb-3 mt-4">
-          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"コメントここに" %>
-        </div>
-        <div class="input-group mb-3 mt-4">
-          <%= f.text_field :store_name, class:"form-control", placeholder:"ショップ名" %>
-        </div>
-        <div class="input-group mb-3 mt-4">
-          <%= f.text_field :price, class:"form-control", placeholder:"価格" %>
-        </div>
-        <div class="input-group mb-3 mt-4">
-          <%= f.text_field :address, class:"form-control", placeholder:"住所" %>
-        </div>
-        <hr>
-        <%= f.submit '変更', class:"btn btn-lg btn-block btn-info mt-4" %>
-      <% end %>
+        <%= render 'form', review: @review %>
       </div>
     </div>
   </div>

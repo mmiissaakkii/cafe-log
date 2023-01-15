@@ -27,3 +27,8 @@ Tag.create([
   { name: '和風カフェ' },
   { name: '韓国風カフェ' }
 ])
+
+Admin.create!(
+   email: 'admin@admin',
+   password: 'testtest'
+)
