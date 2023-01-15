@@ -22,10 +22,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   #会員側ルーティング
   scope module: :public do
+    get "search_tag"=>"reviews#search_tag"
     resources :reviews do
       resources :favorites, only: [:create, :destroy]
       get "search" => "searches#search"
-      get "search_tag"=>"posts#search_tag"
     end
     resources :customers, only:[:index, :show, :edit, :update, :new]
     resources :tags, only:[:show, :new, :create]

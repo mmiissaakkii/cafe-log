@@ -11,16 +11,6 @@ class Public::TagsController < ApplicationController
     redirect_to customer_path
   end
 
-  def index
-    @reviews = Review.all
-    if params[:tag_ids]
-      @tweets = []
-      params[:tag_ids].each do |key, value|
-        @tweets += Tag.find_by(name: key).reviews if value == "1"
-      end
-      @reviews.uniq!
-    end
-  end
 
   private
 

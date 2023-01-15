@@ -47,7 +47,7 @@ class Public::ReviewsController < ApplicationController
     redirect_to reviews_path, notice: "レビューを削除しました"
   end
 
-  def search_tag #検索結果画面でもタグ一覧表示
+  def search_tag
     @tags=Tag.all
     @tag=Tag.find(params[:tag_id])
     @reviews=@tag.posts.page(params[:page]).per(10)
