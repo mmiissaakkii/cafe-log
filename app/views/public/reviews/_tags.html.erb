@@ -1,4 +1,8 @@
-<% tags.each do |tag| %>
-  <%= link_to tag.name,review_search_tag_path(tag.id)%>
-  <%="(#{tag.review.count})" %>
-<% end %>
+<ul class="list-group border">
+  <% tags.each do |tag| %>
+  <li class="list-group-item">
+    <%= link_to tag.name,review_search_path(tag.id)%>
+    <%="(#{tag.review.count})" %>
+  </li>
+  <% end %>
+</ul>

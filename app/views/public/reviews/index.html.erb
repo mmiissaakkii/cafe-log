@@ -1,4 +1,37 @@
-<%= render 'index', reviews: @reviews %>
+<div class="container p-5 mx-3 mx-auto">
+  <div class="row">
+    <div class="col-8">
+      <div class="card shadow-lg mb-2 p-4">
+      <% @reviews.each do |review| %>
+        <div class="card-title row mt-3">
+          <%= link_to customer_path(review.customer.id) do %>
+            <%= image_tag review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3"; %>
+          <strong class="mt-5 ml-4"><%= review.customer.name %></strong>
+          <% end %>
+        </div>
+        <%= link_to review_path(review.id) do %>
+          <%= image_tag review.image, class:"card-img-top"; %>
+        <% end %>
+        <div class="col-10 mx-2 mx-auto mb-5 card-body">
+          <p class="card-text favorite-btn col-8">
+            <%= render 'public/favorites/favorite-btn', review: review %>
+          </p>
+          <p class="card-text">
+            <%= review.body %>
+          </p>
+          <p class="card-text">
+            <% review.tags.each do |tag| %>
+              <span>#<%= tag.name %></span>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-4">
+      <!--paginate-->
+    <%= render 'tags', tags: @tags %><!--タグ一覧-->
+    </div>
 
-<%= render 'tags', tags: @tags %>
+  </div>
 </div>

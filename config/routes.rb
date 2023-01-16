@@ -24,14 +24,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
     get "search_tag"=>"reviews#search_tag"
     resources :reviews do
-      resources :favorites, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
       get "search" => "searches#search"
     end
-    resources :customers, only:[:index, :show, :edit, :update, :new]
+    resources :customers, only:[:index, :show, :edit, :update, :new] do
+      member do
+        get :favorite
+      end
+    end
     resources :tags, only:[:show, :new, :create]
   end
-
-
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

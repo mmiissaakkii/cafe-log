@@ -12,9 +12,9 @@
     <%= image_tag @review.image, class:"card-img-top col-8 mx-2 mx-auto"; %>
 
     <div class="col-8 mx-2 mx-auto mb-5">
-      <p class="card-text favorite-btn">
+      <div class="card-text favorite-btn" id="favorite-btn_<%= @review.id %>">
         <%= render 'public/favorites/favorite-btn', review: @review %>
-      </p>
+      </div>
 
       <p class="card-text">
         <%= @review.store_name %>

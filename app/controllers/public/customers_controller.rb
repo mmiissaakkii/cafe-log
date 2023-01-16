@@ -11,6 +11,10 @@ class Public::CustomersController < ApplicationController
     redirect_to customer_path(@customer.id)
   end
 
+  def favorite
+    @favorites = Favorite.where(customer_id: @customer.id).pluck(:review_id)
+    @favorite_reviews = Review.find(favorites)
+  end
 
 
   def show

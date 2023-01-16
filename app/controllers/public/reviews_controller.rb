@@ -19,10 +19,10 @@ class Public::ReviewsController < ApplicationController
 #レビュー変更後アップデート
   def update
     @review = Review.find(params[:id])
-    if @review.update(review.params)
-      redirect_to :show, notice: "レビューを編集しました"
+    if @review.update(review_params)
+      redirect_to review_path(@review)
     else
-      render :edit
+      render "edit"
     end
   end
 
