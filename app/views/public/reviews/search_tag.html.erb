@@ -1,22 +1,36 @@
 <div class="container">
-<h5>タグが<%=@tag.name%>の投稿一覧</h5>
+  <div class="row no-gutters">
+    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="p-4 mb-0 ml-5 font-weight-bold">
+        <% @review_tags.each do |review_tags| %>
+          #<%= review_tags.tag.name %>
+        <% end %>
+        </h5>
 
-<!--タグリスト-->
-<% @tag_list.each do |list|%>
-<%=link_to list.name,search_tag_path(tag_id: list.id) %>
-<%="(#{list.posts.count})" %><% end %>
-<% @reviews.each do |review| %>
-<div class="card">
-  <div class="card-body">
-    <h6 class="card-title">
-      <%=link_to review_path(review.id) do %><%= review.title.truncate(25) %>
-      <% end %>
-    </h6>
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+          <% @review_tags.each do |review_tags| %>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <%= link_to review_path(review_tags.review.id) do %>
+                <%= image_tag review_tags.review.image, class:"card-img-top"; %>
+              <% end %>
+              <div class="card-body">
+                <div class="card-text favorite-btn" id="favorite-btn_<%= review_tags.review.id %>">
+                  <%= render 'public/favorites/favorite-btn', review: review_tags.review %>
+                </div>
+                <p class="card-text">
+                  <%= review_tags.review.body %>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<% end %>
-
-<div class="pagination pagination-sm justify-content-center">
-       <%= paginate @posts %></div>
-
 </div>

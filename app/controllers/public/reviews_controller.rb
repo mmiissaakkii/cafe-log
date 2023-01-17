@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
 
+
   def index
     @reviews = Review.all
     @tags = Tag.all
@@ -16,7 +17,6 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
-#レビュー変更後アップデート
   def update
     @review = Review.find(params[:id])
     if @review.update(review_params)
@@ -30,7 +30,6 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new
   end
 
-#レビューの保存
   def create
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
@@ -48,12 +47,9 @@ class Public::ReviewsController < ApplicationController
   end
 
   def search_tag
-    @tags=Tag.all
-    @tag=Tag.find(params[:tag_id])
-    @reviews=@tag.posts.page(params[:page]).per(10)
+    @review_tags = ReviewTag.where(tag_id: params[:id])
   end
 
-#レビューのストロングパラメータ
   private
 
   def review_params

@@ -1,25 +1,27 @@
-<div class="row">
-<div class="col-8 ml-5 mb-3">
-  <h5 class="gray ml-5">会員一覧</h5>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11">
+      <table class="table table-striped">
+        <h4 class="mt-5">会員一覧</h4>
+        <thead class="thead-light">
+          <tr>
+            <th>会員ID</th>
+            <th>プロフィール画像</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer|%>
+          <tr>
+            <td><%= customer.id %></td>
+            <td><%= image_tag customer.get_profile_image(80,80), class:"mx-auto"; %></td>
+            <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
+            <td><%= customer.email %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-</div>
-
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col" width="15%">会員ID</th>
-      <th scope="col" width="40%">氏名</th>
-      <th scope="col" width="45%">メールアドレス</th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <% @customers.each do |customer|%>
-      <tr>
-        <td><%= customer.id %></td>
-        <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
-        <td><%= customer.email %></td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>

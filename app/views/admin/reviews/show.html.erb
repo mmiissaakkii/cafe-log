@@ -1,2 +1,46 @@
-<h1>Admin::Reviews#show</h1>
-<p>Find me in app/views/admin/reviews/show.html.erb</p>
+<div class="post-detail py-5 bg-light">
+  <div class="card w-75 mx-auto mt-4 shadow-lg">
+    <div class="col-8 mx-2 mx-auto">
+      <div class="card-title row mt-3">
+        <%= image_tag @review.customer.get_profile_image(80,80), class:"w-15 rounded-circle mt-3"; %>
+        <strong class="mt-5 ml-4">
+          <%= @review.customer.name %>
+        </strong>
+      </div>
+    </div>
+
+    <%= image_tag @review.image, class:"card-img-top col-8 mx-2 mx-auto"; %>
+
+    <div class="col-8 mx-2 mx-auto mb-5">
+      <p class="cardtext">
+        ♡<%= @review.favorites.count %>
+      </p>
+
+      <p class="card-text">
+        <%= @review.store_name %>
+      </p>
+
+      <p class="card-text">
+        <%= @review.body %>
+      </p>
+
+      <p class="card-text">
+        <% @review.tags.each do |tag| %>
+          <span><%= tag.name %></span>
+        <% end %>
+      </p>
+
+      <p class="card-text">price
+        <%= @review.price %>
+      </p>
+      <p class="card-text">address
+        <%= @review.address %>
+      </p>
+        <div class="card-text">
+          <%= link_to "編集", edit_admin_review_path(@review.id), class: "btn btn-sm btn-success" %>
+          <%= link_to "削除", admin_review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

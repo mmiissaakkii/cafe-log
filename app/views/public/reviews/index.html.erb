@@ -10,13 +10,13 @@
           <% end %>
         </div>
         <%= link_to review_path(review.id) do %>
-          <%= image_tag review.image, class:"card-img-top"; %>
+          <%= image_tag review.image, size: "200x200", class:"img-fluid card-img-top"; %>
         <% end %>
         <div class="col-10 mx-2 mx-auto mb-5 card-body">
-          <p class="card-text favorite-btn col-8">
+          <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
             <%= render 'public/favorites/favorite-btn', review: review %>
-          </p>
-          <p class="card-text">
+          </div>
+          <p class="card-text customer">
             <%= review.body %>
           </p>
           <p class="card-text">
@@ -28,8 +28,8 @@
       <% end %>
       </div>
     </div>
+    <!--paginate入れる-->
     <div class="col-4">
-      <!--paginate-->
     <%= render 'tags', tags: @tags %><!--タグ一覧-->
     </div>
 

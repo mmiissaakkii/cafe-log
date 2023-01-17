@@ -10,7 +10,7 @@ class Review < ApplicationRecord
     if search == "partial_match"
       @review = Review.where("store_name LIKE?","%#{word}%")
     else
-      @book = Book.all
+      @review = Review.all
     end
   end
 

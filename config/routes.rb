@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'public/homes#top'
 
 # 顧客用
@@ -16,13 +17,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   #管理者側ルーティング
   namespace :admin do
-    resources :reviews, only:[:index, :show, :edit, :update]
+    resources :reviews, only:[:index, :show, :edit, :update, :destroy]
     resources :customers, only:[:index, :show, :edit, :update]
+    get 'homes/top'
   end
 
   #会員側ルーティング
   scope module: :public do
-    get "search_tag"=>"reviews#search_tag"
+    get "search_tag" => "reviews#search_tag"
     resources :reviews do
       resource :favorites, only: [:create, :destroy]
       get "search" => "searches#search"

@@ -12,8 +12,9 @@ class Public::CustomersController < ApplicationController
   end
 
   def favorite
-    @favorites = Favorite.where(customer_id: @customer.id).pluck(:review_id)
-    @favorite_reviews = Review.find(favorites)
+    review_ids = current_customer.favorites.map {|f| f.review_id }
+    @reviews = Review.where(id: review_ids)
+
   end
 
 
