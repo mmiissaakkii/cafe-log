@@ -19,7 +19,7 @@
           <p class="card-text customer">
             <%= review.body %>
           </p>
-          <p class="card-text">
+          <p class="card-text text-decoration-none text-dark">
             <% review.tags.each do |tag| %>
               <span>#<%= tag.name %></span>
             <% end %>
@@ -31,7 +31,13 @@
     <!--paginate入れる-->
     <div class="col-4">
     <%= render 'tags', tags: @tags %><!--タグ一覧-->
+    <div class="search_form">
+    <%= form_with url: search_path, method: :get do |f| %>
+      <%= f.text_field :word %>
+      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
     </div>
-
+    </div>
   </div>
 </div>

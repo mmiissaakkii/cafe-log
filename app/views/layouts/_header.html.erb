@@ -1,65 +1,53 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <nav class="navbar navbar-expand-lg navbar-dark header-bg-color">
     <div class="container">
-      <% if admin_signed_in? %>
-        <a class="navbar-brand" href="/admin/homes/top"><span>Cafe Log</span></a>
-      <% else %>
-        <a class="navbar-brand" href="/admin/homes/top"><span>Cafe Log</span></a>
-      <% end %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+
+        <% if admin_signed_in? %>
+          <a class="navbar-brand" href="/admin/homes/top"><span><%= image_tag 'cafelog-logo.png', size: '200x130' %></span></a>
+        <% else %>
+          <a class="navbar-brand" href="/"><span><%= image_tag 'cafelog-logo.png', size: '200x130' %></span></a>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li>
-            <%= link_to reviews_path, class: "nav-link text-light" do %>
-              <i class="fa-solid fa-mug-saucer"></i> Reviews
-            <% end %>
+            <%= link_to 'Reviews', reviews_path, class: "nav-link text-body" %>
           </li>
           <li>
-            <%= link_to new_review_path(current_customer),class: 'nav-link text-light' do %>
-              <i class="fa-solid fa-sparkles"></i> New Review
-            <% end %>
+            <%= link_to 'New Review', new_review_path(current_customer),class: "nav-link text-body" %>
           </li>
           <li>
-            <%= link_to customer_path(current_customer),class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> My Page
-            <% end %>
+            <%= link_to 'My Page', customer_path(current_customer),class: "nav-link text-body" %>
           </li>
           <li>
-            <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> Logout
-            <% end %>
+            <%= link_to 'Logout', destroy_customer_session_path, method: :delete, class: "nav-link text-body" %>
+
           </li>
 
         <% elsif admin_signed_in? %>
           <!--li>
-            <%#= link_to admin_reviews_path, class: 'nav-link text-light' do %>
+            <%#= link_to admin_reviews_path, class: 'nav-link text-body' do %>
               <i class="fas fa-coffee"></i>レビュー一覧
             <%# end %>
           </li>
           <li>
-            <%#= link_to admin_customers_path, class: 'nav-link text-light' do %>
+            <%#= link_to admin_customers_path, class: 'nav-link text-body' do %>
               <i class="fas fa-users"></i>会員一覧
             <%# end %>
           </li-->
           <li>
-            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i>Log out
-            <% end %>
+            <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: "nav-link text-body" %>
           </li>
 
         <% else %>
           <li>
-            <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-user-plus"></i> Sign up
-            <% end %>
+            <%= link_to 'Sign up', new_customer_registration_path,class: "nav-link text-body" %>
           </li>
           <li>
-            <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-in-alt"></i> Log in
-            <% end %>
+            <%= link_to 'Log in', new_customer_session_path ,class: "nav-link text-body" %>
           </li>
         <% end %>
         </ul>

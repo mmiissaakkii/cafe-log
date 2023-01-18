@@ -1,4 +1,6 @@
 class Public::ReviewsController < ApplicationController
+  before_action :set_review, only: [:show, :edit, :update, :destoroy]
+  before_action :authenticate_customer!, except: [:index, :show, :search_tag]
 
 
   def index
@@ -7,18 +9,15 @@ class Public::ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(params[:id])
   end
 
   def edit
-    @review = Review.find(params[:id])
     if @review.customer != current_customer
       redirect_to :review_path
     end
   end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to review_path(@review)
     else
@@ -41,7 +40,6 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
     @review.destroy
     redirect_to reviews_path, notice: "レビューを削除しました"
   end
@@ -51,6 +49,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   private
+
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
   def review_params
     params.require(:review).permit(:body, :store_name, :image, :price, :address, tag_ids: [])

@@ -17,8 +17,8 @@
                 <%= image_tag review.image, class:"card-img-top"; %>
               <% end %>
               <div class="card-body">
-                <div class="card-text favorite-btn" id="favorite-btn_<%= @review.id %>">
-                  <%= render 'public/favorites/favorite-btn', review: @review %>
+                <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
+                  <%= render 'public/favorites/favorite-btn', review: review %>
                 </div>
                 <p class="card-text">
                   <%= review.body %>

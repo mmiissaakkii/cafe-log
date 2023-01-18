@@ -7,7 +7,13 @@ class Review < ApplicationRecord
 
   #検索機能
   def self.looks(search, word)
-    if search == "partial_match"
+    if search == "perfect_match"
+      @review = Review.where("store_name LIKE?","#{word}")
+    elsif search == "forward_match"
+      @review = Review.where("store_name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @review = Review.where("store_name LIKE?","%#{word}")
+    elsif search == "partial_match"
       @review = Review.where("store_name LIKE?","%#{word}%")
     else
       @review = Review.all

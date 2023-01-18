@@ -1,0 +1,12 @@
+<h2>Results index</h2>
+
+<table class="table">
+   <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.store_name %></td>
+          <td><%= review.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

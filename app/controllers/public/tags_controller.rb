@@ -1,4 +1,6 @@
 class Public::TagsController < ApplicationController
+  before_action :authenticate_customer!
+
 
   def new
     @tag = Tag.new

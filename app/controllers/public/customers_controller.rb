@@ -1,12 +1,12 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!, except: [:show]
+  before_action :set_customer, only: [:edit, :update, :show]
 
 
   def edit
-    @customer = Customer.find(params[:id])
   end
 
   def update
-    @customer = Customer.find(params[:id])
     @customer.update(customer_params)
     redirect_to customer_path(@customer.id)
   end
@@ -19,7 +19,6 @@ class Public::CustomersController < ApplicationController
 
 
   def show
-    @customer = Customer.find(params[:id])
     @reviews = @customer.reviews
   end
 
@@ -27,6 +26,10 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:profile_image, :name)
+  end
+
+  def set_customer
+    @customer = Customer.find(params[:id])
   end
 
 end
