@@ -56,7 +56,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari','~> 1.2.1'
-
 gem 'jquery-rails'
-
 gem 'devise'
+gem 'gmaps4rails'
+gem 'geocoder'
+gem 'dotenv-rails'

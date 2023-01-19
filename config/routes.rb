@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: 'public/homes#top'
 
+  get 'maps/index'
+  resources :maps, only: [:index]
+
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
