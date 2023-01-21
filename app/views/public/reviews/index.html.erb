@@ -1,43 +1,52 @@
-<div class="container p-5 mx-3 mx-auto">
+<!--レビューの一覧ページ -->
+<div class="p-md-5 mx-md-3 mx-md-auto">
   <div class="row">
-    <div class="col-8">
-      <div class="card shadow-lg mb-2 p-4">
+    <div class="col-md-8 mt-2">
       <% @reviews.each do |review| %>
-        <div class="card-title row mt-3">
-          <%= link_to customer_path(review.customer.id) do %>
-            <%= image_tag review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3"; %>
-          <strong class="mt-5 ml-4"><%= review.customer.name %></strong>
-          <% end %>
+      <div class="card border">
+        <!--レビューの会員-->
+        <div class="card-title row px-3">
+          <div class="w-25 col-3">
+            <%= link_to customer_path(review.customer.id) do %>
+              <%= image_tag review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3 profile-image" %>
+            <% end %>
+          </div>
+          <div class="col-9"><%= link_to review.customer.name ,customer_path(review.customer.id), class:"customer-name" %></div>
         </div>
+        <!--レビューの画像-->
         <%= link_to review_path(review.id) do %>
           <%= image_tag review.image, size: "200x200", class:"img-fluid card-img-top"; %>
         <% end %>
         <div class="col-10 mx-2 mx-auto mb-5 card-body">
+        <!--いいねボタン-->
           <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
             <%= render 'public/favorites/favorite-btn', review: review %>
           </div>
+        <!--店名-->
           <p class="card-text customer">
-            <%= review.body %>
+            <%= review.store_name %>
           </p>
+        <!--ついてるタグ-->
           <p class="card-text text-decoration-none text-dark">
             <% review.tags.each do |tag| %>
               <span>#<%= tag.name %></span>
             <% end %>
           </p>
         </div>
-      <% end %>
       </div>
+      <% end %>
     </div>
     <!--paginate入れる-->
-    <div class="col-4">
-    <%= render 'tags', tags: @tags %><!--タグ一覧-->
-    <div class="search_form">
-    <%= form_with url: search_path, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
-    <% end %>
-    </div>
+    <div class="col-md-4 sidebar-fixed">
+      <!--タグ一覧　部分テンプレート-->
+      <%= render 'tags', tags: @tags %>
+      <!--検索フォーム-->
+      <div class="search-form ml-4 mt-3">
+      <%= form_with url: search_path, method: :get do |f| %>
+        <%= f.text_field :word ,class:"search-form-color", placeholder:"店名を入れてください" %>
+        <%= f.submit "検索", class: "btn btn-secondary" %>
+      <% end %>
+      </div>
     </div>
   </div>
 </div>

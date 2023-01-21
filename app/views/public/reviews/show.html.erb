@@ -1,6 +1,6 @@
 <div class="post-detail py-5 bg-light">
   <div class="card w-75 mx-auto mt-4 shadow-lg">
-    <div class="col-8 mx-2 mx-auto">
+    <div class="col-md-8 mx-2 mx-auto">
       <div class="card-title row mt-3">
         <%= image_tag @review.customer.get_profile_image(80,80), class:"w-15 rounded-circle mt-3"; %>
         <strong class="mt-5 ml-4">
@@ -33,10 +33,22 @@
       <p class="card-text">price
         <%= @review.price %>
       </p>
-      <p class="card-text">address
-        <%= @review.address %>
-      </p>
-        <div class="card-text">
+      <div class="map">
+        <div id="map">
+        </div>
+      </div>
+
+      <div type="text/javascript">
+        <script>
+          function initMap(){
+            let map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: <%= @review.latitude %>, lng: <%= @review.longitude %> },
+            zoom: 15
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+              <div class="card-text">
           <% if @review.customer == current_customer %>
             <%= link_to "編集", edit_review_path(@review.id), class: "btn btn-sm btn-success" %></td>
             <%= link_to "削除", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>

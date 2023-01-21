@@ -1,9 +1,13 @@
-<% if review.favorited_by?(current_customer) %>
-  <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
-    ♥<%= review.favorites.count %>
+<% if customer_signed_in? %>
+  <% if review.favorited_by?(current_customer) %>
+    <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
+      ♥<%= review.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to review_favorites_path(review), method: :post, remote: true do %>
+      ♡<%= review.favorites.count %>
+    <% end %>
   <% end %>
 <% else %>
-  <%= link_to review_favorites_path(review), method: :post, remote: true do %>
-    ♡<%= review.favorites.count %>
-  <% end %>
+  ♡<%= review.favorites.count %>
 <% end %>

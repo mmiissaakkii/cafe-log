@@ -1,16 +1,46 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-.header-bg-color{
-    background-color: #D8BfD8;
-}
-.footer-bg-color{
-    background-color: #D8BfD8;
+
+//***public***//
+
+//review/index/_tags
+.tag-text-color{
+    color: #808080;
 }
 
-.navbar-toggler-icon{
-    color: brack;
+.tag-borderline{
+    width: fit-content;
 }
-.text-dark{
-    color: brack;
+
+//review/index
+.customer-name{
+    color: #000;
+    position: relative;
+    top: 50%;
+}
+
+//homes/top
+.search-form-color{
+    color: #dee2e6;
+}
+
+//review/show
+#map {
+  height: 300px;
+  width: 400px;
+}
+
+//review/index
+.profile-image{
+    width: 8vw;
+    height: 8vw;
+    margin: auto;
+    object-fit: cover;
+}
+
+
+.sidebar-fixed{
+    position: sticky;
+    top: 60px;
 }

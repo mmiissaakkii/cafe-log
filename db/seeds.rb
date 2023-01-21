@@ -28,7 +28,7 @@
 #   { name: '韓国風カフェ' }
 # ])
 
-#Admin.create!(
-  #email: 'admin@admin',
-  #password: 'testtest'
-#)
+# Admin.create!(
+#   email: 'admin@admin',
+#   password: 'testtest'
+# )

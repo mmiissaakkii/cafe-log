@@ -1,7 +1,7 @@
-<ul class="list-group border">
+<ul class="row tag-group">
   <% tags.each do |tag| %>
-  <li class="list-group-item">
-    <%= link_to tag.name , search_tag_path(id: tag.id)%>
+  <li class="border rounded-pill tag-text-color tag-borderline list-unstyled m-1 p-2">
+    <%= link_to tag.name , search_tag_path(id: tag.id), class:"tag-text-color" %>
     <%="(#{tag.review.count})" %>
   </li>
   <% end %>

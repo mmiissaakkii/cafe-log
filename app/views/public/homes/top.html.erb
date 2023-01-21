@@ -1,7 +1,53 @@
-<div class="container">
-  <div class="row no-gutters">
-    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      Let's record your café with "CafeLog"!
+<div style="width: 100%; background-color: #D8BfD8">
+  <!--見出し-->
+  <div class="justify-content-center">
+    <h4 class="text-center mb-5 pb-2 pt-5">Let's record your café with "CafeLog"!</h4>
+    <!--レビュー一覧へのリンク-->
+    <div class="text-center mb-3 col-5 mx-auto">
+      <%= link_to "レビューを書く", reviews_path , class: "btn border btn-light mb-5 border-secondary btn-block" %>
+    </div>
+    <!--検索フォーム-->
+    <div class="search-form mb-4 pb-5 text-center">
+      <%= form_with url: search_path, method: :get do |f| %>
+        <%= f.text_field :word ,class:"search_form-color ", placeholder:"店名を入れてください" %>
+        <%= f.submit "検索", class: "btn border btn-light border-secondary" %>
+      <% end %>
     </div>
   </div>
+</div>
+  <!--人気投稿3件（いいね数の順番）-->
+  <div class="album py-5">
+    <div class="container">
+      <div class="row">
+      <% @reviews.each do |review| %>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <%= link_to review_path(review.id) do %>
+              <%= image_tag review.image, class:"card-img-top"; %>
+            <% end %>
+            <div class="card-body">
+              <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
+                <%= render 'public/favorites/favorite-btn', review: review %>
+              </div>
+              <p class="card-text">
+                <%= review.store_name %>
+              </p>
+              <p class="card-text">
+                <% review.tags.each do |tag| %>
+                  <span>#<%= tag.name %></span>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="justify-content-end mb-3" style="color: #808080">
+      <%= link_to "もっと見る>>", reviews_path %>
+    </div>
+      </div>
+    </div>
+  </div>
+  <!--タグ一覧-->
+  <div class="col-md-9 mx-auto"><%= render 'public/reviews/tags', tags: @tags %></div>
+  <div>
 </div>

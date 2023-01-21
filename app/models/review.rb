@@ -7,21 +7,12 @@ class Review < ApplicationRecord
 
   #検索機能
   def self.looks(search, word)
-    if search == "perfect_match"
-      @review = Review.where("store_name LIKE?","#{word}")
-    elsif search == "forward_match"
-      @review = Review.where("store_name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @review = Review.where("store_name LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @review = Review.where("store_name LIKE?","%#{word}%")
-    else
-      @review = Review.all
-    end
+    @review = Review.where("store_name LIKE?","%#{word}%")
   end
 
 #いいね機能
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end
+  
 end

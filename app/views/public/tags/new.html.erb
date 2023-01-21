@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+    <div class="col-md-5 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <div class="bg-light">
         <h5 class="p-4 mb-0 ml-5 font-weight-bold">New Tag</h5>
       </div>
@@ -12,15 +12,15 @@
         <br>
         <%= f.submit '追加', class: 'btn btn-primary btn-block' %>
       <% end %>
-      <table>
-        <tbody>
-          <% @tags.each do |tags| %>
-            <tr>
-              <td><%= tags.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        <table>
+          <tbody>
+            <% @tags.each do |tags| %>
+              <tr>
+                <td><%= tags.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
