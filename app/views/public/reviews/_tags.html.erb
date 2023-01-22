@@ -1,8 +1,8 @@
-<ul class="list-group ">
-  <% tags.each do |tag| %>
-  <li class="list-group-item rounded-pill m-1 border border-secondary tag-link">
-    <%= link_to tag.name , search_tag_path(id: tag.id)%>
-    <%="(#{tag.review.count})" %>
-  </li>
-  <% end %>
-</ul>
+<div class="d-flex flex-wrap">
+    <% tags.each do |tag| %>
+    <div class="btn rounded-pill m-1 border border-secondary tag-borderline">
+      <%= link_to tag.name , search_tag_path(id: tag.id), style:"color: #000;"%>
+      <%="(#{tag.review.count})" %>
+    </div>
+    <% end %>
+</div>

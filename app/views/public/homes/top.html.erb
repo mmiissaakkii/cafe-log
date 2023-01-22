@@ -4,7 +4,7 @@
     <h4 class="text-center mb-5 pb-2 pt-5">Let's record your café with "CafeLog"!</h4>
     <!--レビュー一覧へのリンク-->
     <div class="text-center mb-3 col-5 mx-auto">
-      <%= link_to "レビューを書く", reviews_path , class: "btn border btn-light mb-5 border-secondary btn-block" %>
+      <%= link_to "レビューを書く", new_review_path , class: "btn border btn-light mb-5 border-secondary btn-block" %>
     </div>
     <!--検索フォーム-->
     <div class="search-form mb-4 pb-5 text-center">
@@ -23,7 +23,7 @@
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <%= link_to review_path(review.id) do %>
-              <%= image_tag review.image, class:"card-img-top"; %>
+              <%= image_tag review.image ,size: "300x300", class:"card-img-top", style:"object-fit: cover;" %>
             <% end %>
             <div class="card-body">
               <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
@@ -32,7 +32,7 @@
               <p class="card-text">
                 <%= review.store_name %>
               </p>
-              <p class="card-text">
+              <p class="card-text text-truncate">
                 <% review.tags.each do |tag| %>
                   <span>#<%= tag.name %></span>
                 <% end %>

@@ -1,11 +1,13 @@
-<div class="container">
-  <div class="row no-gutters">
-    <div class="col-md-10 mx-auto shadow-lg rounded px-0 my-5">
+<div class="p-md-5 mx-md-3 mx-md-auto">
+  <div class="row">
+    <div class="col-md-11 mx-auto rounded border">
       <h5 class="p-4 mb-0 ml-5 font-weight-bold">User Page</h5>
-      <div class="row p-4 mb-0 ml-5">
-        <%= image_tag @customer.get_profile_image(100,100), class:"mt-3 profile-image"; %>
-        <div class="d-flex align-items-center ml-3"><%= @customer.name %></div>
-        <div class="d-flex align-items-center ml-3"><%= link_to '編集', edit_customer_path(@customer.id), method: :get %></div>
+      <div class="card-title row px-3">
+        <%= image_tag @customer.get_profile_image(100,100), class:"rounded-circle profile-image" %>
+        <div class="col-9 d-flex align-items-center">
+          <div class="ml-3"><%= @customer.name %></div>
+          <div class="ml-3"><%= link_to '編集', edit_customer_path(@customer.id), method: :get %></div>
+        </div>
       </div>
       <div class="album py-5">
         <div class="container">

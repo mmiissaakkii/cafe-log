@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'comments/create'
+    get 'comments/destroy'
+  end
   root to: 'public/homes#top'
 
   get 'maps/index'
@@ -30,6 +34,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get "search" => "searches#search"
     resources :reviews do
       resource :favorites, only: [:create, :destroy]
+      resources :comments,only:[:create,:destroy]
     end
     resources :customers, only:[:index, :show, :edit, :update, :new] do
       member do

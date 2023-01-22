@@ -6,10 +6,9 @@
       <div class="card border">
         <!--レビューの会員-->
         <div class="card-title row px-3">
-          <div class="w-25 col-3">
+          <div>
             <%= link_to customer_path(review.customer.id) do %>
-              <%= image_tag review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3 profile-image" %>
-            <% end %>
+              <%= image_tag review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3 profile-image" %><% end %>
           </div>
           <div class="col-9"><%= link_to review.customer.name ,customer_path(review.customer.id), class:"customer-name" %></div>
         </div>
@@ -23,7 +22,7 @@
             <%= render 'public/favorites/favorite-btn', review: review %>
           </div>
         <!--店名-->
-          <p class="card-text customer">
+          <p class="card-text">
             <%= review.store_name %>
           </p>
         <!--ついてるタグ-->
@@ -37,7 +36,7 @@
       <% end %>
     </div>
     <!--paginate入れる-->
-    <div class="col-md-4 sidebar-fixed">
+    <div class="col-md-4" style="position: sticky; top: 60px;">
       <!--タグ一覧　部分テンプレート-->
       <%= render 'tags', tags: @tags %>
       <!--検索フォーム-->

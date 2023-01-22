@@ -1,24 +1,32 @@
-<div class="container p-5 mx-3 mx-auto">
-  <div class="row">
-    <div class="col-8">
-      <div class="card shadow-lg mb-2 p-4">
+<!--いいねした投稿一覧-->
+<div class="p-md-5 mx-md-3 mx-md-auto">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mt-2">
+      <h4 class="pb-5"><%= current_customer.name %>のいいねした投稿一覧</h4>
       <% @reviews.each do |review| %>
-        <div class="card-title row mt-3">
+      <div class="card border">
+        <!--いいねしたレビューの投稿者-->
+        <div class="card-title row px-3">
+          <div class="w-25 col-3">
           <%= link_to customer_path(review.customer.id) do %>
-            <%= image_tag review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3"; %>
-          <strong class="mt-5 ml-4"><%= review.customer.name %></strong>
-          <% end %>
+            <%= image_tag review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3",:size =>'100x100' %><% end %>
+          </div>
+          <div class="col-9"><%= link_to review.customer.name ,customer_path(review.customer.id), class:"customer-name" %></div>
         </div>
+        <!--いいねしたレビューの画像-->
         <%= link_to review_path(review.id) do %>
           <%= image_tag review.image, size: "200x200", class:"img-fluid card-img-top"; %>
         <% end %>
         <div class="col-10 mx-2 mx-auto mb-5 card-body">
+          <!--いいねしたレビューのいいねボタン-->
           <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
           <%= render 'public/favorites/favorite-btn', review: review %>
           </div>
+          <!--いいねしたレビューの店名-->
           <p class="card-text">
-            <%= review.body %>
+            <%= review.store_name %>
           </p>
+          <!--いいねしたレビューのタグ-->
           <p class="card-text">
             <% review.tags.each do |tag| %>
               <span>#<%= tag.name %></span>

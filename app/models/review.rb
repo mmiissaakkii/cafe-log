@@ -4,6 +4,7 @@ class Review < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :review_tags,dependent: :destroy
   has_many :tags,through: :review_tags
+  has_many :comments, dependent: :destroy
 
   #検索機能
   def self.looks(search, word)
@@ -14,5 +15,5 @@ class Review < ApplicationRecord
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end
-  
+
 end

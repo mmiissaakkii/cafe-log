@@ -2,10 +2,8 @@
   <div class="card w-75 mx-auto mt-4 shadow-lg">
     <div class="col-md-8 mx-2 mx-auto">
       <div class="card-title row mt-3">
-        <%= image_tag @review.customer.get_profile_image(80,80), class:"w-15 rounded-circle mt-3"; %>
-        <strong class="mt-5 ml-4">
-          <%= @review.customer.name %>
-        </strong>
+        <%= image_tag @review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3 profile-image" %>
+        <div class="col-9"><%= link_to @review.customer.name ,customer_path(@review.customer.id), class:"customer-name" %></div>
       </div>
     </div>
 
@@ -57,5 +55,8 @@
         <% end %>
       </div>
     </div>
+     <!--コメントの数-->
+    <div>コメント数：<%= @review.comments.count %></div>
+    <div id="comments-area"><%= render "public/comments/comment",reviews: @review ,comments: @comment %></div>
   </div>
 </div>
