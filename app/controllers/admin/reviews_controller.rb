@@ -28,6 +28,10 @@ class Admin::ReviewsController < ApplicationController
     redirect_to reviews_path, notice: "レビューを削除しました"
   end
 
+  def search_tag
+    @review_tags = ReviewTag.where(tag_id: params[:id])
+  end
+
   private
 
   def set_review

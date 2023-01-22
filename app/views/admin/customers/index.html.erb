@@ -15,7 +15,7 @@
           <% @customers.each do |customer|%>
           <tr>
             <td><%= customer.id %></td>
-            <td><%= image_tag customer.get_profile_image(80,80), class:"mx-auto"; %></td>
+            <td><%= image_tag customer.get_profile_image(80,80),size: "100x100", style:"object-fit: cover;" %></td>
             <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
             <td><%= customer.email %></td>
           </tr>

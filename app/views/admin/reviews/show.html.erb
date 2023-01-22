@@ -1,45 +1,79 @@
-<div class="post-detail py-5 bg-light">
-  <div class="card w-75 mx-auto mt-4 shadow-lg">
-    <div class="col-8 mx-2 mx-auto">
-      <div class="card-title row mt-3">
-        <%= image_tag @review.customer.get_profile_image(80,80), class:"w-15 rounded-circle mt-3"; %>
-        <strong class="mt-5 ml-4">
-          <%= @review.customer.name %>
-        </strong>
-      </div>
-    </div>
-
-    <%= image_tag @review.image, class:"card-img-top col-8 mx-2 mx-auto"; %>
-
-    <div class="col-8 mx-2 mx-auto mb-5">
-      <p class="cardtext">
-        ♡<%= @review.favorites.count %>
-      </p>
-
-      <p class="card-text">
-        <%= @review.store_name %>
-      </p>
-
-      <p class="card-text">
-        <%= @review.body %>
-      </p>
-
-      <p class="card-text">
-        <% @review.tags.each do |tag| %>
-          <span><%= tag.name %></span>
-        <% end %>
-      </p>
-
-      <p class="card-text">price
-        <%= @review.price %>
-      </p>
-      <p class="card-text">address
-        <%= @review.address %>
-      </p>
-        <div class="card-text">
-          <%= link_to "編集", edit_admin_review_path(@review.id), class: "btn btn-sm btn-success" %>
-          <%= link_to "削除", admin_review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+<div class="p-md-5 mx-md-3 mx-md-auto">
+  <div class="row">
+    <div class="col-md-11 mx-auto rounded border">
+      <div class="col-md-8 mx-2 mx-auto">
+        <!--会員プロフィール画像・名前-->
+        <div class="card-title row mt-3">
+          <%= image_tag @review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3 profile-image" %>
+          <div class="col-9"><%= link_to @review.customer.name ,admin_customer_path(@review.customer.id), class:"customer-name" %></div>
         </div>
+      </div>
+      <!--レビュー画像-->
+      <div class="row"><%= image_tag @review.image, class:"card-img-top col-8 mx-2 mx-auto" %></div>
+      <div class="col-8 mx-2 mx-auto mb-5">
+        <!--いいね数-->
+        <p class="card-text ">
+          いいね数
+          <%= @review.favorites.count %>
+        </p>
+        <!--店名-->
+        <p class="card-text">
+          店名
+          <%= @review.store_name %>
+        </p>
+        <!--本文-->
+        <p class="card-text">
+          本文
+          <%= @review.body %>
+        </p>
+        <!--タグ-->
+        <p class="card-text">
+          タグ
+          <% @review.tags.each do |tag| %>
+            <span><%= tag.name %></span>
+          <% end %>
+        </p>
+        <!--価格-->
+        <p class="card-text">
+          価格
+          <%= @review.price %>
+        </p>
+        <p class="card-text">
+          住所
+          <%= @review.address %>
+        </p>
+        <!--マップ-->
+        <div class="map">
+          <div id="map"></div>
+        </div>
+        <div type="text/javascript">
+          <script>
+            function initMap(){
+              let map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: <%= @review.latitude %>, lng: <%= @review.longitude %> },
+              zoom: 15
+              });
+            }
+          </script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+        </div>
+        <div class="card-text">
+          <%= link_to "編集", edit_admin_review_path(@review.id), class: "btn btn-sm btn-success mb-5" %>
+          <%= link_to "削除", admin_review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger mb-5" %>
+        </div>
+        <!--コメント-->
+        <div class="my-4 border-top">コメント数：<%= @review.comments.count %></div>
+        <table>
+          <% @review.comments.each do |review_comment| %>
+          <tr>
+            <td><%= image_tag review_comment.customer.get_profile_image(80,80), class:"rounded-circle mr-2 profile-image" %>
+            <%= link_to review_comment.customer.name , customer_path(review_comment.customer.id), class:"customer-name ml-4 mt-3" %></td>
+            <td class="col-10"><%= review_comment.comment %></td>
+            <td class="col-2"><%= link_to "コメント削除", review_comment_path(review_comment.review, review_comment), method: :delete,remote: true,class:"btn btn-danger", style: "font-size: xx-small;" %></td>
+          </tr>
+          <% end %>
+        </table>
+
       </div>
     </div>
   </div>

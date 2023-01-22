@@ -22,16 +22,20 @@
       <% @reviews.each do |review| %>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
+            <!--画像-->
             <%= link_to review_path(review.id) do %>
               <%= image_tag review.image ,size: "300x300", class:"card-img-top", style:"object-fit: cover;" %>
             <% end %>
+            <!--いいね-->
             <div class="card-body">
               <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
                 <%= render 'public/favorites/favorite-btn', review: review %>
               </div>
+              <!--店名-->
               <p class="card-text">
                 <%= review.store_name %>
               </p>
+              <!--タグ-->
               <p class="card-text text-truncate">
                 <% review.tags.each do |tag| %>
                   <span>#<%= tag.name %></span>

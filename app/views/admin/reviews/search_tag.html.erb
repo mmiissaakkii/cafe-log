@@ -1,19 +1,17 @@
+<!--タグのついた投稿を取り出す-->
 <div class="container">
   <div class="row no-gutters">
     <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="p-4 mb-0 ml-5 font-weight-bold">
-        <% @review_tags.each do |review_tags| %>
-          #<%= review_tags.tag.name %>
-        <% end %>
-        </h5>
-
+        <% @review_tags.each do |review_tags| %>#<%= review_tags.tag.name %><% end %>
+      </h5>
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
           <% @review_tags.each do |review_tags| %>
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-              <%= link_to review_path(review_tags.review.id) do %>
+              <%= link_to admin_review_path(review_tags.review.id) do %>
                 <%= image_tag review_tags.review.image,size: "300x300", class: "card-img-top", style: "object-fit: cover;" %>
               <% end %>
               <div class="card-body">

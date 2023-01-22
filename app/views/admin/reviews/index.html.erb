@@ -30,6 +30,15 @@
           <% end %>
         </tbody>
       </table>
+      <div class="d-flex flex-wrap">
+        <% @tags.each do |tag| %>
+        <div class="btn rounded-pill m-1 border border-secondary tag-borderline">
+          <%= link_to tag.name , admin_search_tag_path(id: tag.id), style:"color: #000;" %>
+          <%="(#{tag.review.count})" %>
+        </div>
+        <% end %>
+        <button class="btn rounded-pill m-1 border border-secondary tag-borderline"><%= link_to "新しいタグを作成する>>", new_admin_tag_path, style:"color: #000;" %></button>
+      </div>
     </div>
   </div>
 </div>

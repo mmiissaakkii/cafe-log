@@ -1,31 +1,38 @@
+<!--会員詳細-->
 <div class="p-md-5 mx-md-3 mx-md-auto">
   <div class="row">
     <div class="col-md-11 mx-auto rounded border">
       <h5 class="p-4 mb-0 ml-5 font-weight-bold">User Page</h5>
+      <!--会員プロフィール画像・名前-->
       <div class="card-title row px-3">
         <%= image_tag @customer.get_profile_image(100,100), class:"rounded-circle profile-image" %>
         <div class="col-9 d-flex align-items-center">
           <div class="ml-3"><%= @customer.name %></div>
-          <div class="ml-3"><%= link_to '編集', edit_customer_path(@customer.id), method: :get %></div>
+          <div class="ml-3"><%= link_to '編集', edit_customer_path(@customer.id), method: :get, class:"btn rounded-pill border border-secondary" %></div>
         </div>
       </div>
+      <!--会員の投稿-->
       <div class="album py-5">
         <div class="container">
           <div class="row">
           <% @reviews.each do |review| %>
             <div class="col-md-4">
               <div class="card mb-4">
+                <!--画像-->
                 <%= link_to review_path(review.id) do %>
-                  <%= image_tag review.image, class:"card-img-top img-fluid" %>
+                  <%= image_tag review.image ,size: "300x300", class:"card-img-top", style:"object-fit: cover;" %>
                 <% end %>
+                <!--本文-->
                 <div class="card-body">
                   <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
                     <%= render 'public/favorites/favorite-btn', review: review %>
                   </div>
+                  <!--店名-->
                   <p class="card-text">
                     <%= review.store_name %>
                   </p>
-                  <p class="card-text">
+                  <!--タグ-->
+                  <p class="card-text text-truncate">
                     <% review.tags.each do |tag| %>
                       <span>#<%= tag.name %></span>
                     <% end %>
@@ -40,8 +47,8 @@
           </div>
         </div>
       </div>
-      <div class="justify-content-end">
-        <%= link_to "いいねした投稿>>", favorite_customer_path(current_customer.id) %>
+      <div class="m-3">
+        <%= link_to "いいねした投稿>>", favorite_customer_path(current_customer.id), class: "justify-content-end" %>
       </div>
     </div>
   </div>

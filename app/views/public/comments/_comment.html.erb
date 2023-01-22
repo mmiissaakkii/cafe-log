@@ -1,13 +1,13 @@
 <table>
   <% reviews.comments.each do |review_comment| %>
   <tr>
-    <td>
-    <%= image_tag review_comment.customer.get_profile_image(80,80) %><br>
-    <%#=link_to user_path(books.user.id) do %><%= review_comment.customer.name %><%# end %>
-    </td>
-    <td><%= review_comment.comment %></td>
+    <td><%= image_tag review_comment.customer.get_profile_image(80,80), class:"rounded-circle mr-2 profile-image" %>
+    <%= link_to review_comment.customer.name , customer_path(review_comment.customer.id), class:"customer-name" %></td>
+  </tr>
+  <tr>
+    <td class="col-10"><%= review_comment.comment %></td>
     <% if review_comment.customer == current_customer %>
-    <td><%= link_to "Destroy", review_comment_path(review_comment.review, review_comment), method: :delete,remote: true,class:"btn btn-danger" %></td>
+    <td class="col-2"><%= link_to "コメント削除", review_comment_path(review_comment.review, review_comment), method: :delete,remote: true,class:"btn btn-danger", style: "font-size: xx-small;" %></td>
     <% end %>
   </tr>
   <% end %>
@@ -17,6 +17,6 @@
   <label for="newcomment">Comment</label>
  <%= form_with(model:[reviews, comments], local: true) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに",class:"form-control" %>
-  <%= f.submit "送信する" %>
+  <%= f.submit "送信",class: "btn btn-info mt-4"  %>
  <% end %>
  </div>

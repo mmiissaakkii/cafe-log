@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   namespace :public do
-    get 'comments/create'
-    get 'comments/destroy'
+    get "comments/create"
+    get "comments/destroy"
   end
-  root to: 'public/homes#top'
+  root to: "public/homes#top"
 
-  get 'maps/index'
+  get "maps/index"
   resources :maps, only: [:index]
 
 # 顧客用
@@ -25,7 +25,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :admin do
     resources :reviews, only:[:index, :show, :edit, :update, :destroy]
     resources :customers, only:[:index, :show, :edit, :update]
-    get 'homes/top'
+    resources :tags, only:[:new, :create]
+    get "homes/top"
+    get "search_tag" => "reviews#search_tag"
+    get "search" => "searches#search"
   end
 
   #会員側ルーティング

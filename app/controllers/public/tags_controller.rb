@@ -10,7 +10,7 @@ class Public::TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     @tag.save
-    redirect_to customer_path
+    redirect_to new_tag_path
   end
 
 

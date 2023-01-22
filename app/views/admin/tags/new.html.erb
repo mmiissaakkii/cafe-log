@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
+  <div class="row no-gutters">
     <div class="col-md-9 mx-2 mx-sm-auto border rounded px-0 my-5">
       <div class="bg-light">
         <h5 class="p-4 mb-0 ml-5 font-weight-bold">New Tag</h5>
       </div>
       <div class="form-body p-4 col-8 mx-auto">
-      <%= form_with model: @tag, url: tags_path(@tag.id), method: :post do |f| %>
+      <%= form_with model: @tag, url: admin_tags_path(@tag.id), method: :post do |f| %>
         <%= f.label :name, 'タグ' %>
         <br>
         <%= f.text_field :name, class:'form-control' %>

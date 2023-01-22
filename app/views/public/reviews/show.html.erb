@@ -1,39 +1,46 @@
-<div class="post-detail py-5 bg-light">
-  <div class="card w-75 mx-auto mt-4 shadow-lg">
-    <div class="col-md-8 mx-2 mx-auto">
+<div class="p-md-5 mx-md-3 mx-md-auto">
+  <div class="row">
+    <div class="col-md-11 mx-auto rounded border">
+      <div class="col-md-8 mx-2 mx-auto">
+      <!--会員プロフィール画像・名前-->
       <div class="card-title row mt-3">
         <%= image_tag @review.customer.get_profile_image(80,80), class:"rounded-circle mt-3 ml-3 profile-image" %>
         <div class="col-9"><%= link_to @review.customer.name ,customer_path(@review.customer.id), class:"customer-name" %></div>
       </div>
     </div>
-
-    <%= image_tag @review.image, class:"card-img-top col-8 mx-2 mx-auto"; %>
+    <!--レビュー画像-->
+    <div class="row"><%= image_tag @review.image, class:"card-img-top col-8 mx-auto"; %></div>
 
     <div class="col-8 mx-2 mx-auto mb-5">
+      <!--いいねボタン-->
       <div class="card-text favorite-btn" id="favorite-btn_<%= @review.id %>">
           <%= render 'public/favorites/favorite-btn', review: @review %>
       </div>
-
-      <p class="card-text">
-        <%= @review.store_name %>
-      </p>
-
-      <p class="card-text">
+      <!--本文-->
+      <div class="card-text my-2">
         <%= @review.body %>
-      </p>
-
-      <p class="card-text">
+      </div>
+      <!--店名-->
+      <div class="card-text my-2">
+        店名
+        <%= @review.store_name %>
+      </div>
+      <!--タグ-->
+      <div class="card-text my-2">
+        タグ
         <% @review.tags.each do |tag| %>
           <span><%= tag.name %></span>
         <% end %>
-      </p>
-
-      <p class="card-text">price
+      </div>
+      <!--値段-->
+      <div class="card-text my-2">価格
         <%= @review.price %>
-      </p>
-      <p class="card-text">address
+      </div>
+      <!--住所-->
+      <div class="card-text my-2">住所
         <%= @review.address %>
-      </p>
+      </div>
+      <!--マップ-->
       <div class="map">
         <div id="map"></div>
       </div>
@@ -48,15 +55,16 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       </div>
+      <!--レビュー編集-->
       <div class="card-text">
         <% if @review.customer == current_customer %>
-          <%= link_to "編集", edit_review_path(@review.id), class: "btn btn-sm btn-success" %></td>
-          <%= link_to "削除", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
+          <%= link_to "編集", edit_review_path(@review.id), class: "btn btn-sm btn-success" %>
         <% end %>
       </div>
+      <!--コメント-->
+      <div class="mt-4 border-top">コメント数：<%= @review.comments.count %></div>
+      <div><%= render "public/comments/comment",reviews: @review ,comments: @comment %></div>
     </div>
-     <!--コメントの数-->
-    <div>コメント数：<%= @review.comments.count %></div>
-    <div id="comments-area"><%= render "public/comments/comment",reviews: @review ,comments: @comment %></div>
   </div>
+</div>
 </div>
