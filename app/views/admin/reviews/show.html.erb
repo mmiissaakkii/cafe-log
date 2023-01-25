@@ -42,25 +42,8 @@
           住所
           <%= @review.address %>
         </p>
-        <!--マップ-->
-        <div class="map">
-          <div id="map"></div>
-        </div>
-        <div type="text/javascript">
-          <script>
-            function initMap(){
-              let map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: <%= @review.latitude %>, lng: <%= @review.longitude %> },
-              zoom: 15
-              });
-            }
-          </script>
-          <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-        </div>
-        <div class="card-text">
-          <%= link_to "編集", edit_admin_review_path(@review.id), class: "btn btn-sm btn-success mb-5" %>
-          <%= link_to "削除", admin_review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger mb-5" %>
-        </div>
+        <!--編集-->
+        <%= link_to "編集", edit_admin_review_path(@review.id), class: "btn btn-info" %>
         <!--コメント-->
         <div class="my-4 border-top">コメント数：<%= @review.comments.count %></div>
         <table>

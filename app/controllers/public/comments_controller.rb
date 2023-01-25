@@ -4,6 +4,7 @@ class Public::CommentsController < ApplicationController
     comment = current_customer.comments.new(comment_params)
     comment.review_id = @review.id
     comment.save
+    redirect_to reviews_path
   end
 
   def destroy

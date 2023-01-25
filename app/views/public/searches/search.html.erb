@@ -1,8 +1,9 @@
 
 <div class="container">
   <div class="row no-gutters">
-    <div class="col-md-10 mx-auto shadow-lg rounded px-0 my-5">
+    <div class="col-md-10 mx-auto border rounded px-0 my-5">
       <div class="album py-5 bg-light">
+        <h5 class="ml-4">検索結果</h5>
         <div class="container">
           <div class="row">
           <% @reviews.each do |review| %>
@@ -16,7 +17,7 @@
                     <%= render 'public/favorites/favorite-btn', review: review %>
                   </div>
                   <p class="card-text">
-                    <%= review.body %>
+                    <%= review.store_name %>
                   </p>
                   <p class="card-text">
                     <% review.tags.each do |tag| %>

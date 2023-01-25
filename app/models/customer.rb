@@ -5,9 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
   has_many :reviews, dependent: :destroy
-  has_many :review_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -15,5 +14,11 @@ class Customer < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def self.guest
+    find_or_create_by!(email: "guest@example.com", name: "ゲスト") do |customer|
+    customer.password = SecureRandom.urlsafe_base64
+    end
   end
 end

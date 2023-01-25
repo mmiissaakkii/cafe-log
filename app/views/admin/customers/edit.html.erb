@@ -1,2 +1,32 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<!--会員情報編集ページ-->
+<div class="container">
+  <div class="row p-auto">
+    <div class="w-100 rounded px-0 my-5 border">
+      <div class="bg-light">
+        <h5 class="p-4 mb-0 ml-5 font-weight-bold">Profile Editing</h5>
+      </div>
+      <div class="form-body p-4 col-8 mx-auto">
+      <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
+      <!--名前編集-->
+      <div class="input-group mb-3 mt-4">
+        <div class="mr-2"><%= f.label :name, "Name" %></div>
+        <%= f.text_field :name, class:"form-control" %>
+      </div>
+      <!--プロフィール画像編集-->
+      <div class="input-group mb-3 mt-4">
+        <div class="mr-2"><%= f.label :profile_image, "Profile Image" %></div>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
+      <div class="btn input-group mb-3 mt-4">
+        <%= f.submit "編集" %>
+      </div>
+      <% end %>
+        <% unless @customer.email == "guest@example.com" then %>
+        <div class="mt-3">
+          <%= link_to "退会", admin_customer_path(@customer.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

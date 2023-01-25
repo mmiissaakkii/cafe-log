@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!, except: [:show]
-  before_action :set_customer, only: [:edit, :update, :show]
+  before_action :authenticate_customer!, except: [:show, :guest_sign_in]
+  before_action :set_customer, only: [:edit, :update, :show, :destroy]
 
 
   def edit
@@ -20,6 +20,18 @@ class Public::CustomersController < ApplicationController
 
   def show
     @reviews = @customer.reviews
+  end
+
+  def destroy
+      @customer.destroy
+      flash[:notice] = "ユーザーを削除しました。"
+      redirect_to :root
+  end
+
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   private

@@ -1,8 +1,8 @@
 class Admin::ReviewsController < ApplicationController
     before_action :authenticate_admin!
-    before_action :set_review, only: [:show, :edit, :update, :destoroy]
+    before_action :set_review, only: [:show, :edit, :update, :destroy]
   def index
-    @reviews =Review.all
+    @reviews =Review.page(params[:page])
     @tags = Tag.all
   end
 
@@ -10,14 +10,11 @@ class Admin::ReviewsController < ApplicationController
   end
 
   def edit
-    if @review.customer != current_customer
-      redirect_to :review_path
-    end
   end
 
   def update
     if @review.update(review_params)
-      redirect_to review_path(@review)
+      redirect_to admin_review_path(@review)
     else
       render "edit"
     end
@@ -25,7 +22,7 @@ class Admin::ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to reviews_path, notice: "レビューを削除しました"
+    redirect_to admin_reviews_path, notice: "レビューを削除しました"
   end
 
   def search_tag
@@ -36,6 +33,10 @@ class Admin::ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def review_params
+    params.require(:review).permit(:body, :store_name, :longitude, :latitude, :image, :price, :address, tag_ids: [])
   end
 
 

@@ -8,7 +8,11 @@
         <%= image_tag @customer.get_profile_image(100,100), class:"rounded-circle profile-image" %>
         <div class="col-9 d-flex align-items-center">
           <div class="ml-3"><%= @customer.name %></div>
-          <div class="ml-3"><%= link_to '編集', edit_customer_path(@customer.id), method: :get, class:"btn rounded-pill border border-secondary" %></div>
+          <% if @customer == current_customer %>
+            <% unless @customer.email == "guest@example.com" %>
+              <div class="ml-3"><%= link_to '編集', edit_customer_path(@customer.id), method: :get, class:"btn rounded-pill border border-secondary" %></div>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <!--会員の投稿-->
@@ -22,7 +26,6 @@
                 <%= link_to review_path(review.id) do %>
                   <%= image_tag review.image ,size: "300x300", class:"card-img-top", style:"object-fit: cover;" %>
                 <% end %>
-                <!--本文-->
                 <div class="card-body">
                   <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
                     <%= render 'public/favorites/favorite-btn', review: review %>
@@ -37,9 +40,6 @@
                       <span>#<%= tag.name %></span>
                     <% end %>
                   </p>
-                  <% if review.customer == current_customer %>
-                    <% link_to "編集", edit_review_path(review), class: "btn btn-success" %>
-                  <% end %>
                 </div>
               </div>
             </div>

@@ -21,6 +21,13 @@
         <%= f.submit "編集" %>
       </div>
       <% end %>
+      <% if customer_signed_in? && @customer == current_customer %>
+        <% unless @customer.email == "guest@example.com" then %>
+        <div class="mt-3">
+          <%= link_to "退会", customer_path(current_customer.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+        </div>
+        <% end %>
+      <% end %>
       </div>
     </div>
   </div>

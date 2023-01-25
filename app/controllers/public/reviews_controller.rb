@@ -1,10 +1,10 @@
 class Public::ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destoroy]
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_customer!, except: [:index, :show, :search_tag]
 
 
   def index
-    @reviews = Review.all
+    @reviews = Review.page(params[:page])
     @tags = Tag.all
   end
 
