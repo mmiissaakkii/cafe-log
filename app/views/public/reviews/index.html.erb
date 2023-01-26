@@ -13,8 +13,10 @@
           <div class="col-9"><%= link_to review.customer.name ,customer_path(review.customer.id), class:"customer-name" %></div>
         </div>
         <!--レビューの画像-->
+        <% if review.image.attached? %>
         <%= link_to review_path(review.id) do %>
           <%= image_tag review.image, size: "200x200", class:"img-fluid card-img-top"; %>
+        <% end %>
         <% end %>
         <div class="col-10 mx-2 mx-auto mb-5 card-body">
         <!--いいねボタン-->
