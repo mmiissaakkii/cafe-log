@@ -9,7 +9,9 @@
         </div>
       </div>
       <!--レビュー画像-->
+      <% if @review.image.attached? %>
       <div class="row"><%= image_tag @review.image, class:"card-img-top col-8 mx-2 mx-auto" %></div>
+      <% end %>
       <div class="col-8 mx-2 mx-auto mb-5">
         <!--いいね数-->
         <p class="card-text ">

@@ -8,7 +8,9 @@
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
               <%= link_to review_path(review_tags.review.id) do %>
+              <% if review.image.attached? %>
                 <%= image_tag review_tags.review.image,size: "300x300", class: "card-img-top", style: "object-fit: cover;" %>
+              <% end %>
               <% end %>
               <div class="card-body">
                 <div class="card-text favorite-btn" id="favorite-btn_<%= review_tags.review.id %>">

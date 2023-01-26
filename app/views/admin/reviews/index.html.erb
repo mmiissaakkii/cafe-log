@@ -16,8 +16,10 @@
           <tr>
             <th><%= review.id %></th>
             <td>
+              <% if review.image.attached? %>
               <%= link_to admin_review_path(review.id) do %>
                 <%= image_tag review.image, size: "200x200", class:"img-fluid"; %>
+              <% end %>
               <% end %>
             </td>
             <td><% review.tags.each do |tag| %><span>#<%= tag.name %></span><% end %></td>
