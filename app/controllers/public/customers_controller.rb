@@ -2,7 +2,6 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:show, :guest_sign_in]
   before_action :set_customer, only: [:edit, :update, :show, :destroy]
 
-
   def edit
   end
 

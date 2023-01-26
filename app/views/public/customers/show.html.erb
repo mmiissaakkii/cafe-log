@@ -38,6 +38,7 @@
                   <p class="card-text text-truncate">
                     <% review.tags.each do |tag| %>
                       <span>#<%= tag.name %></span>
+
                     <% end %>
                   </p>
                 </div>
@@ -48,7 +49,9 @@
         </div>
       </div>
       <div class="m-3">
-        <%= link_to "いいねした投稿>>", favorite_customer_path(current_customer.id), class: "justify-content-end" %>
+        <% if @customer == current_customer %>
+          <%= link_to "いいねした投稿>>", favorite_customer_path(current_customer.id), class: "justify-content-end" %>
+        <% end %>
       </div>
     </div>
   </div>

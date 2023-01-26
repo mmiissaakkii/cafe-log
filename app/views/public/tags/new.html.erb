@@ -12,11 +12,12 @@
         <br>
         <%= f.submit '追加', class: 'btn btn-primary btn-block' %>
       <% end %>
-        <table>
+        <table class="mx-auto">
           <tbody>
             <% @tags.each do |tags| %>
-              <tr>
-                <td><%= tags.name %></td>
+              <tr class="border-bottom">
+                <td class="pr-5"><%= tags.name %></td>
+                <td class="pl-5"><%= link_to "削除", tag_path(tags.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
               </tr>
             <% end %>
           </tbody>

@@ -21,7 +21,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   #管理者側ルーティング
   namespace :admin do
     resources :reviews, only:[:index, :show, :edit, :update, :destroy]
-    resources :customers, only:[:index, :show, :edit, :update, :destroy]
+    resources :customers, only:[:index, :show, :edit, :update]
     resources :tags, only:[:new, :create]
     get "homes/top"
     get "search_tag" => "reviews#search_tag"
@@ -47,7 +47,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
         get :favorite
       end
     end
-    resources :tags, only:[:show, :new, :create]
+    resources :tags, only:[:destroy, :new, :create]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

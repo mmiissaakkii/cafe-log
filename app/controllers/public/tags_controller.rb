@@ -13,6 +13,12 @@ class Public::TagsController < ApplicationController
     redirect_to new_tag_path
   end
 
+  def destroy
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+    redirect_to new_tag_url
+  end
+
 
   private
 

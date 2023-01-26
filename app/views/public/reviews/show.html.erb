@@ -48,7 +48,7 @@
       </div>
       <!--コメント-->
       <div class="mt-4 border-top">コメント数：<%= @review.comments.count %></div>
-      <div><%= render "public/comments/comment",reviews: @review ,comments: @comment %></div>
+      <% if customer_signed_in? %><div><%= render "public/comments/comment",reviews: @review ,comments: @comment %></div><% end %>
     </div>
   </div>
 </div>

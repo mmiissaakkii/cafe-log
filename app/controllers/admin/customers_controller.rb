@@ -1,6 +1,6 @@
 class Admin::CustomersController < ApplicationController
      before_action :authenticate_admin!
-     before_action :set_customer, only: [:edit, :update, :show, :destroy]
+     before_action :set_customer, only: [:edit, :update, :show]
 
   def index
     @customers = Customer.page(params[:page])
@@ -11,12 +11,6 @@ class Admin::CustomersController < ApplicationController
   end
 
   def edit
-  end
-
-  def destroy
-      @customer.destroy
-      flash[:notice] = "ユーザーを削除しました。"
-      redirect_to admin_customers_path
   end
 
   def update
