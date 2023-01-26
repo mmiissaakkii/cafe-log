@@ -23,8 +23,10 @@
             <div class="col-md-4">
               <div class="card mb-4">
                 <!--画像-->
+                <% if review.image.attached? %>
                 <%= link_to review_path(review.id) do %>
                   <%= image_tag review.image ,size: "300x300", class:"card-img-top", style:"object-fit: cover;" %>
+                <% end %>
                 <% end %>
                 <div class="card-body">
                   <div class="card-text favorite-btn" id="favorite-btn_<%= review.id %>">
