@@ -34,7 +34,7 @@
                   </div>
                   <!--店名-->
                   <p class="card-text">
-                    <%= review.store_name %>
+                    <%= link_to  review_path(review.id) do %><%= review.store_name %><% end %>
                   </p>
                   <!--タグ-->
                   <p class="card-text text-truncate">
