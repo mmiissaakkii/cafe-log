@@ -6,7 +6,7 @@
         <h5 class="p-4 mb-0 ml-5 font-weight-bold">Profile Editing</h5>
       </div>
       <div class="form-body p-4 col-8 mx-auto">
-      <%= form_with model: @customer, url: customer_path, method: :patch do |f| %>
+      <%= form_with model:@customer, url: customer_path, method: :patch do |f| %>
       <!--名前編集-->
       <div class="input-group mb-3 mt-4">
         <div class="mr-2"><%= f.label :name, "Name" %></div>

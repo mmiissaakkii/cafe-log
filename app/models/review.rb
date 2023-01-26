@@ -6,6 +6,11 @@ class Review < ApplicationRecord
   has_many :tags,through: :review_tags
   has_many :comments, dependent: :destroy
 
+  validates :store_name, presence: true
+  validates :price, presence: true
+  validates :address, presence: true
+  validates :body, presence: true
+
   #検索機能
   def self.looks(search, word)
     @review = Review.where("store_name LIKE?","%#{word}%")

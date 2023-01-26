@@ -2,6 +2,8 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :ensure_normal_customer, only: :destroy
+  
+  #byebug
 
   def ensure_normal_customer
     if resource.email == 'guest@example.com'

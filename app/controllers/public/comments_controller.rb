@@ -4,12 +4,13 @@ class Public::CommentsController < ApplicationController
     comment = current_customer.comments.new(comment_params)
     comment.review_id = @review.id
     comment.save
-    redirect_to reviews_path
+    redirect_to review_path(@review)
   end
 
   def destroy
     @review = Review.find(params[:review_id])
-    Comment.find_by(id:params[:id], review_id:params[review_id]).destroy
+    Comment.find_by(review_id: params[:review_id],id: params[:id]).destroy
+    redirect_to review_path(@review)
   end
 
   private

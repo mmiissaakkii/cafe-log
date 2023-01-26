@@ -3,6 +3,9 @@ class Public::CustomersController < ApplicationController
   before_action :set_customer, only: [:edit, :update, :show, :destroy]
 
   def edit
+    if @customer != current_customer
+      redirect_to(customer_path(current_customer))
+    end
   end
 
   def update

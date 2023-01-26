@@ -33,7 +33,7 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
-    if @review.save!
+    if @review.save
       redirect_to review_path(@review), notice: "レビューを作成しました！"
     else
       render :new

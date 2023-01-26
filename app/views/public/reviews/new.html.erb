@@ -7,12 +7,12 @@
         <%=form_with model: @review, url: reviews_path, method: :post do |f| %>
 
         <div class="input-group mb-3 mt-4">
-          <%= f.file_field :image, accept: "image/*" %>
+          <%= f.file_field :image, accept: "image/*", required: true %>
         </div>
 
         <div class="input-group mb-3 mt-4">
           <%= f.label :price, "本文" ,class: "mr-2" %>
-          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"本文" %>
+          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"本文", required: true %>
         </div>
         <div class="input-group mb-3 mt-4">
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
@@ -27,17 +27,17 @@
 
         <div class="input-group mb-3 mt-4">
           <%= f.label :price, "ショップ名", class: "mr-2" %>
-          <%= f.text_field :store_name, class:"form-control", placeholder:"ショップ名を入力" %>
+          <%= f.text_field :store_name, class:"form-control", placeholder:"ショップ名を入力", required: true %>
         </div>
 
         <div class="input-group mb-3 mt-4">
           <%= f.label :price, "価格",class: "mr-2" %>
-          <%= f.text_field :price, class:"form-control", placeholder:"半角数字で入力してください" %>
+          <%= f.text_field :price, class:"form-control", placeholder:"半角数字で入力してください", required: true %>
         </div>
 
         <div class="input-group mb-3 mt-4">
           <%= f.label :address, "場所", class: "mr-2" %>
-          <%= f.text_field :address, class: "form-control", placeholder:"◯◯県◯◯市" %>
+          <%= f.text_field :address, class: "form-control", placeholder:"◯◯県◯◯市", required: true %>
         </div>
 
         <hr>

@@ -9,7 +9,7 @@
     <!--検索フォーム-->
     <div class="search-form mb-4 pb-5 text-center">
       <%= form_with url: search_path, method: :get do |f| %>
-        <%= f.text_field :word ,class:"search_form-color ", placeholder:"店名を入れてください" %>
+        <%= f.text_field :word ,class:"search_form-color ", placeholder:"店名を入れてください", required: true %>
         <%= f.submit "検索", class: "btn border btn-light border-secondary" %>
       <% end %>
     </div>
