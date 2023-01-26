@@ -54,7 +54,7 @@
             <td><%= image_tag review_comment.customer.get_profile_image(80,80), class:"rounded-circle mr-2 profile-image" %>
             <%= link_to review_comment.customer.name , customer_path(review_comment.customer.id), class:"customer-name ml-4 mt-3" %></td>
             <td class="col-10"><%= review_comment.comment %></td>
-            <td class="col-2"><%= link_to "コメント削除", review_comment_path(review_comment.review, review_comment), method: :delete,remote: true,class:"btn btn-danger", style: "font-size: xx-small;" %></td>
+            <td class="col-2"><%= link_to "コメント削除",  admin_review_comment_path(review_comment.review, review_comment), method: :delete,remote: true,class:"btn btn-danger", style: "font-size: xx-small;" %></td>
           </tr>
           <% end %>
         </table>

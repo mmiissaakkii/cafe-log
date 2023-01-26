@@ -20,7 +20,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   #管理者側ルーティング
   namespace :admin do
-    resources :reviews, only:[:index, :show, :edit, :update, :destroy]
+    resources :reviews, only:[:index, :show, :edit, :update, :destroy] do
+      resources :comments,only:[:destroy]
+    end
     resources :customers, only:[:index, :show, :edit, :update]
     resources :tags, only:[:new, :create]
     get "homes/top"
