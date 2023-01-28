@@ -19,6 +19,7 @@ instagramでも関係ない位置情報のタグがたくさんついていて�
 カフェを探す時
 
 ## 設計書
+https://docs.google.com/spreadsheets/d/1PhUm2AJeaAG8MIebMJ6CHrBVBWBNBFexE_IOjFTKUZM/edit?usp=sharing
 
 
 ## 開発環境
