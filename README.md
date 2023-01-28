@@ -19,6 +19,7 @@ instagramでも関係ない位置情報のタグがたくさんついていて�
 カフェを探す時
 
 ## 設計書
+テーブル定義書とER図です
 https://docs.google.com/spreadsheets/d/1PhUm2AJeaAG8MIebMJ6CHrBVBWBNBFexE_IOjFTKUZM/edit?usp=sharing
 
 
