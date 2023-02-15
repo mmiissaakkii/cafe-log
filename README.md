@@ -1,4 +1,4 @@
-# <ここにアプリ名を入力>
+## アプリ名
 Cafe log
 
 ## サイト概要
@@ -19,6 +19,8 @@ instagramでも関係ない位置情報のタグがたくさんついていて�
 カフェを探す時
 
 ## 設計書
+テーブル定義書とER図です
+https://docs.google.com/spreadsheets/d/1PhUm2AJeaAG8MIebMJ6CHrBVBWBNBFexE_IOjFTKUZM/edit?usp=sharing
 
 
 ## 開発環境
@@ -27,7 +29,3 @@ instagramでも関係ない位置情報のタグがたくさんついていて�
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
